@@ -24,8 +24,10 @@ const createCompany = asyncHandler(async (req, res) => {
     !longitude ||
     !latitude 
   ) {
-    res.status(400);
-    throw new Error("Please fill in all fields");
+    res.status(200).json({
+        message : "all fields are required",
+        data : req.body
+    })
   }
 
   //   check if the admin already exists
@@ -34,8 +36,9 @@ const createCompany = asyncHandler(async (req, res) => {
     companyName: companyName,
   });
   if (companyExist) {
-    res.status(400);
-    throw new Error("Company already exist");
+    res.status(400).json({
+        message : "company exist"
+    })
   }
 
   // create admin
@@ -54,8 +57,9 @@ const createCompany = asyncHandler(async (req, res) => {
       message: 'Company created successfully',
     });
   } else {
-    res.status(400);
-    throw new Error("Something wrong");
+    res.status(400).json({
+        message:'Something went wrong'
+    });
   }
 });
 

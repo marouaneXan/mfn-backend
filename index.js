@@ -13,8 +13,9 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 //cors
-app.use(cors());
+app.use(cors({origin: '*'}));
 
 //***************************************Global Routes *********************************/
 //Company Route

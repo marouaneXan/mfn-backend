@@ -72,7 +72,15 @@ const getCompanies = asyncHandler(async (req, res) => {
   res.json(company);
 });
 
+const searchCompany = asyncHandler(async (req, res) => {
+  const companies = await Company.find({
+    companyName:req.body.companyName
+  });
+  res.json(companies);
+});
+
 module.exports = {
   createCompany,
   getCompanies,
+  searchCompany
 };

@@ -17,6 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //***************************************Global Routes *********************************/
+//Company Route
+app.use('/api/companies/', require('./routes/CompanyRoute'));
 
 //*************************************************************************************/
 

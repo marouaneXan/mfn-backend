@@ -69,14 +69,18 @@ const createCompany = asyncHandler(async (req, res) => {
 
 const getCompanies = asyncHandler(async (req, res) => {
   const company = await Company.find({});
-  res.json(company);
+  res.status(200).json(company);
 });
 
 const searchCompany = asyncHandler(async (req, res) => {
-  const companies = await Company.find({
-    companyName:req.body.companyName
-  });
-  res.json(companies);
+  const company = await Company.findOne({ companyName: req.query.companyName });
+  if (company) {
+    res.status(200).json([company]);
+  } else {
+    res.status(404).json({
+      message: 'Company not found'
+    });
+  }
 });
 
 module.exports = {
